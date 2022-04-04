@@ -1,0 +1,22 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+<li><form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+ </form></li>
+<div class="sidebar">
+    <div class="home">
+    <h1><a href="{% url 'movies:signed_in' %}"><img src="{% static 'home.png' %}" style="width:30px; height:30px; margin-left:10px;"></a></h1>
+    </div>
+</div>
+<h1 style="text-align:center; color:#907878;">Tell us what you think...</h1>
+<h1><a href="{% url 'movies:list' %}"><img src="{% static 'home.png' %}" style="width:40px; height:40px;"></a></h1>
+<form class="site-form" action="{% url 'movies:review' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

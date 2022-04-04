@@ -1,0 +1,53 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+{% load static %}
+
+
+<nav>
+ <li><form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+ </form></li>
+</nav>
+<div class="sidebar">
+    <div class="home">
+<h1><a href="{% url 'movies:signed_in' %}"><img src="{% static 'home.png' %}" style="width:30px; height:30px;"></a></h1>
+    </div>
+</div>
+<div class="movie-detail">
+    <div class="movie">
+        <h1 style="color:#EEDDDD;">{{ movie.title }}</h1><br/>
+        <h3 style="color:#EADADA; font-weight:lighter;">{{ movie.description }}</h3><br/>
+        <img class="movie-img" src="{{ movie.thumb.url }}" style="width:200px; height:300px;">
+        <br/><br/>
+        <h4 style="color:#EADADA; font-weight:lighter;">{{ movie.general }}</h4>
+    </div>
+</div>
+<br/><br/>
+<hr>
+
+<div class="comments">
+    <h2>Reviews</h2>
+    <br/>
+    {% if movie.reviews.all %}
+        {% for review in movie.reviews.all %}
+    <div class="comment">
+        <strong>
+            {{ review.user }}-
+            {{ review.date }}
+        </strong>
+    </div>
+
+            {{ review.text }}<br/><br/>
+        {% endfor %}
+    {% else %}
+        <h3>-No reviews yet-</h3>
+
+    {% endif %}
+
+<ul><form class="add-review" action="{% url 'movies:review' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Add Review">
+ </form></ul>
+
+{% endblock %}

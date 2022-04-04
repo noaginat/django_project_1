@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+{% load static %}
+
+
+ <li><form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Logout">
+ </form></li>
+<div class="movies">
+    {% for movie in movies %}
+    <div class="movie">
+        <h2><a href="{% url 'movies:details_signed_in' slug=movie.slug %}"><img class="pic" src="{{ movie.thumb.url }}" style="width:200px; height:300px;"></a></h2>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+

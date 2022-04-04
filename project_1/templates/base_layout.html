@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>movies list</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<h1></h1>
+<body>
+<a href="{% url 'home' %}"></a>
+<div class="wrapper">
+<!--    <nav>-->
+<!--        <ul>-->
+<!--        <li><form class="logout-link" action="{% url 'accounts:logout' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <input type="submit" value="Logout">-->
+<!--        </form></li>-->
+<!--        <li><form class="login-link" action="{% url 'accounts:login' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <input type="submit" value="Login">-->
+<!--        </form></li>-->
+<!--        <li><form class="signup-link" action="{% url 'accounts:signup' %}" method="post">-->
+<!--            {% csrf_token %}-->
+<!--            <input type="submit" value="Signup">-->
+<!--        </form></li>-->
+<!--        </ul>-->
+<!--    </nav>-->
+    <div class="sidebar"></div>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
